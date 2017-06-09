@@ -6,7 +6,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 
 public class TodoServlet extends HttpServlet {
 
@@ -14,18 +13,19 @@ public class TodoServlet extends HttpServlet {
 
     private TodoView todoView;
 
+    private TodoChain todoChain;
+
     @Override
     public void init() throws ServletException {
         todoDao = new TodoDaoMock();
         todoView = new TodoViewHtml();
+        todoChain = new TodoChain(todoView, todoDao);
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         PrintWriter writer = resp.getWriter();
         resp.setContentType("text/html");
-        List<TodoModel> allTodos = todoDao.getAllTodos();
-        String todosView = todoView.show(allTodos);
-        writer.println(todosView);
+        writer.println(todoChain.invoke(req.getPathInfo()));
     }
 }
