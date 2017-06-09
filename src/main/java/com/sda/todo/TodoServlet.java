@@ -6,45 +6,26 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.lang.reflect.Array;
-import java.util.Arrays;
 import java.util.List;
 
 public class TodoServlet extends HttpServlet {
 
     private TodoDao todoDao;
 
+    private TodoView todoView;
+
     @Override
     public void init() throws ServletException {
         todoDao = new TodoDaoMock();
+        todoView = new TodoViewHtml();
     }
 
-    /*
-    * <li>
-    *     <h3>date</h3>
-    *     <h1>name</h1>
-    *     <p>description</p>
-    *     <p>XXXXX</p>
-*     </li>
-    */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         PrintWriter writer = resp.getWriter();
-        resp.setContentType("text/html; ISO-8859-1");
+        resp.setContentType("text/html");
         List<TodoModel> allTodos = todoDao.getAllTodos();
-        writer.println("<ul>");
-        for (TodoModel model : allTodos) {
-            writer.println("<li>");
-            writer.println("<h3>" + model.getDate().toString() + "</h3>");
-            writer.println("<h1>" + model.getName() + "</h1>");
-            writer.println("<p>" + model.getDescription() + "</p>");
-            writer.print("<p>");
-            for (int i = 0; i < model.getPriority(); i++) {
-                writer.print("X");
-            }
-            writer.println("</p>");
-            writer.println("</li>");
-        }
-        writer.println("</ul>");
+        String todosView = todoView.show(allTodos);
+        writer.println(todosView);
     }
 }
