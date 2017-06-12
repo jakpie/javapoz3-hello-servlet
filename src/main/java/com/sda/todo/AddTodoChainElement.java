@@ -28,6 +28,8 @@ public class AddTodoChainElement implements TodoChainElement {
         if (TodoUtil.isWriteRequest(req)) {
             TodoModel todomodel = TodoMapper.map(req);
             todoDao.addTodo(todomodel);
+            resp.setStatus(HttpServletResponse.SC_MOVED_PERMANENTLY);
+            resp.setHeader("Location", "/hello-servlets-1.0-SNAPSHOT/todo/all");
         } else {
             valueToReturn = todoView.showAddForm();
         }
