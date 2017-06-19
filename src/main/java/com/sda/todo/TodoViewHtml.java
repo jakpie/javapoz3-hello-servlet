@@ -2,18 +2,14 @@ package com.sda.todo;
 
 import java.util.List;
 
-/**
- * Created by Szymon on 2017-06-08.
- */
 public class TodoViewHtml implements TodoView {
 
     @Override
     public String show(List<TodoModel> todos) {
         StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("<a href=\"/hello-servlets-1.0-SNAPSHOT/todo/all\">All</a></br>");
+        stringBuilder.append("<a href=\"/hello-servlets-1.0-SNAPSHOT/todo/add\">Add</a></br>");
         stringBuilder.append("<ol>\n");
-//        for (TodoModel todo : todos) {
-//            stringBuilder.append(show(todo));
-//        }
         todos.stream()
                 .map(e -> show(e))
                 .forEach(e -> stringBuilder.append(e));
