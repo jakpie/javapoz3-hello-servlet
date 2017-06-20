@@ -1,4 +1,4 @@
-package com.sda.calc;
+package com.sda.sockets;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -9,7 +9,7 @@ import java.util.Scanner;
 /**
  * Created by Szymon on 2017-06-19.
  */
-public class Test {
+public class HelloWorld {
     public static void main(String[] args) throws IOException, InterruptedException {
         ServerSocket serverSocket = new ServerSocket(1234);
         Socket accept = serverSocket.accept();
