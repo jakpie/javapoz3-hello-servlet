@@ -1,27 +1,13 @@
 package com.sda.kik;
 
-import java.util.Arrays;
-
-/**
- * Created by Szymon on 2017-06-20.
- */
 public class Board {
-    //tablica String[]
-    //konstruktor tworzacy pusta tablice
-    //metoda void addMove(int position, char sign)
-    //toString ->
-    //1|2|3
-    //X|O|6
-    //O|X|9
+
     private String[] array;
 
     public Board() {
         array = new String[9];
     }
 
-    /**
-     * @param position values(1-9)
-     */
     public boolean addMove(int position, String sign) {
         boolean valueToReturn = false;
         if (checkRange(position) && isPositionEmpty(position)) {
@@ -39,9 +25,6 @@ public class Board {
         return array[position - 1] == null;
     }
 
-    //1|2|3
-    //X|O|6
-    //O|X|9
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
@@ -52,22 +35,3 @@ public class Board {
         return stringBuilder.toString();
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
