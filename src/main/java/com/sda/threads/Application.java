@@ -5,17 +5,17 @@ package com.sda.threads;
  */
 public class Application {
     public static void main(String[] args) throws InterruptedException {
-        MyTask myTask = new MyTask("one");
-        MyTask myTask2 = new MyTask("two");
-        MyTask myTask3 = new MyTask("three");
-
-        Thread thread = new Thread(myTask);
-        Thread thread2 = new Thread(myTask2);
-        Thread thread3 = new Thread(myTask3);
+        Runnable myTask = new MyTask("one");
+        Runnable myTask2 = new MyTask("two");
+        Runnable myTask3 = new MyTask("three");
 
 //        myTask.run();
 //        myTask2.run();
 //        myTask3.run();
+
+        Thread thread = new Thread(myTask);
+        Thread thread2 = new Thread(myTask2);
+        Thread thread3 = new Thread(myTask3);
 
         System.out.println("starting thread one");
         thread.start();
