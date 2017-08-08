@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class ChatClient {
     public static void main(String[] args) throws IOException {
-        Socket socket = new Socket("192.168.100.185", 1234);
+        Socket socket = new Socket("192.168.100.154", 1234);
 
         Scanner socketIn = new Scanner(socket.getInputStream());
         BufferedWriter socketOut = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
